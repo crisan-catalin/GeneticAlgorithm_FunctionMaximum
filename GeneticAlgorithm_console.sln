@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneticAlgorithm_console", "GeneticAlgorithm_console\GeneticAlgorithm_console.csproj", "{496D3E0D-5569-49FB-A1C3-B581878A4440}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionMaximum.Core", "GeneticAlgorithm_console\FunctionMaximum.Core.csproj", "{496D3E0D-5569-49FB-A1C3-B581878A4440}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionMaximum.GUI", "FunctionMaximum.GUI\FunctionMaximum.GUI.csproj", "{4126EEC4-7C82-4BFF-8CC2-EB54F70180D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{496D3E0D-5569-49FB-A1C3-B581878A4440}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{496D3E0D-5569-49FB-A1C3-B581878A4440}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{496D3E0D-5569-49FB-A1C3-B581878A4440}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4126EEC4-7C82-4BFF-8CC2-EB54F70180D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4126EEC4-7C82-4BFF-8CC2-EB54F70180D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4126EEC4-7C82-4BFF-8CC2-EB54F70180D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4126EEC4-7C82-4BFF-8CC2-EB54F70180D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

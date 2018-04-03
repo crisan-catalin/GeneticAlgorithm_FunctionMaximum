@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections;
-using System.ComponentModel;
 using System.Text;
 
-namespace GeneticAlgorithm_console
+namespace FunctionMaximum.Core
 {
 	public class Chromosome : IComparable<Chromosome>
 	{
-		private BitArray _genes;
+		private readonly BitArray _genes;
 
-		public Int32 Size
-		{
-			get { return _genes.Count; }
-		}
+		public int Size => _genes.Count;
 
-		public Int32 Value
+		public int Value
 		{
 			get
 			{
@@ -31,7 +27,7 @@ namespace GeneticAlgorithm_console
 			}
 		}
 
-		public Int32 Fitness
+		public int Fitness
 		{
 			get
 			{
@@ -39,9 +35,9 @@ namespace GeneticAlgorithm_console
 			}
 		}
 
-		public Double ProbabilityOfSelection { get; set; }
+		public double ProbabilityOfSelection { get; set; }
 
-		public Double ExpectedCount { get; set; }
+		public double ExpectedCount { get; set; }
 
 		public bool this[int index]
 		{
@@ -49,6 +45,14 @@ namespace GeneticAlgorithm_console
 			set { _genes.Set(index, value); }
 		}
 
+		public Chromosome(Chromosome chromosome)
+		{
+			_genes = new BitArray(chromosome.Size);
+			for (int i = 0; i < chromosome.Size; i++)
+			{
+				_genes.Set(i,chromosome._genes.Get(i));
+			}
+		}
 
 		public Chromosome(int chromosomeSize, Random random)
 		{

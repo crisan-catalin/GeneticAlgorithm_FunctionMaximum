@@ -1,41 +1,39 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 
-namespace GeneticAlgorithm_console
+namespace FunctionMaximum.Core
 {
 	public class Population
 	{
-		private static int generation = 1;
-		private Random random;
-		private const int NumEliteChromosomes = 2;
-		private const double MutationRate = 0.1;
+		private static int _generation = 1;
+		private readonly Random _random;
+		private readonly int _elitism;
+		private int _cutPoints;
+		private readonly double _mutationRate;
 
 		public List<Chromosome> _population;
 
-		public Int32 Size
-		{
-			get { return _population.Count; }
-		}
+		public int Size => _population.Count;
 
-		public Int32 ChromosomeSize { get; set; }
+		public int ChromosomeSize { get; set; }
 
-		public Population(int size, int chromosomeSize)
+		public Population(int size, int chromosomeSize, int elitism, int crossOverCutPoints, double mutationRate)
 		{
-			random = new Random();
+			_random = new Random();
 			_population = new List<Chromosome>(size);
 			ChromosomeSize = chromosomeSize;
 			for (int i = 0; i < size; i++)
 			{
-				_population.Add(new Chromosome(chromosomeSize, random));
+				_population.Add(new Chromosome(chromosomeSize, _random));
 			}
 
-//			SortPopulation();
+			_elitism = elitism;
+			_cutPoints = crossOverCutPoints;
+			_mutationRate = mutationRate;
 		}
 
-		public Double BestSolution(out Double value)
+		public double BestSolution(out double value)
 		{
 			List<Chromosome> temp = _population.ToList();
 			temp.Sort();
@@ -46,7 +44,7 @@ namespace GeneticAlgorithm_console
 		public Chromosome RouletteWheel()
 		{
 			var populationFitness = GetPopulationFitness();
-			var randomFitness = random.Next(0, populationFitness);
+			var randomFitness = _random.Next(0, populationFitness);
 
 			double partialSum = 0;
 			for (int i = 0; i < _population.Count; i++)
@@ -58,26 +56,6 @@ namespace GeneticAlgorithm_console
 				}
 			}
 			return null;
-		}
-
-		private void CalculateExpectedCount()
-		{
-			var populationFitness = GetPopulationFitness();
-
-			for (int i = 0; i < _population.Count; i++)
-			{
-				_population[i].ExpectedCount = _population[i].Fitness / (populationFitness / _population.Count);
-			}
-		}
-
-		private void CalculatePropabilityOfSelection()
-		{
-			var populationFitness = GetPopulationFitness();
-
-			for (int i = 0; i < _population.Count; i++)
-			{
-				_population[i].ProbabilityOfSelection = _population[i].Fitness / populationFitness;
-			}
 		}
 
 		private int GetPopulationFitness()
@@ -92,12 +70,24 @@ namespace GeneticAlgorithm_console
 
 		private void ShowOldGeneration()
 		{
-			Console.WriteLine("GENERATION #" + generation);
+			Console.WriteLine("GENERATION #" + _generation);
 			foreach (var chromosome in _population)
 			{
 				Console.WriteLine(chromosome.ToString());
 			}
-			generation++;
+			_generation++;
+		}
+
+		private void Shuffle()
+		{
+			int size = _population.Count;
+			for (int i = 0; i < size - 1; i++)
+			{
+				int randomIndex = _random.Next(i, size);
+				var temp = _population[i];
+				_population[i] = _population[randomIndex];
+				_population[randomIndex] = temp;
+			}
 		}
 
 		public void Evolve()
@@ -105,14 +95,27 @@ namespace GeneticAlgorithm_console
 			ShowOldGeneration();
 
 			List<Chromosome> springs = new List<Chromosome>(_population.Count);
-			for (int i = 0; i < _population.Count; i++)
+
+			_population.Sort();
+			for (int i = 0; i < _elitism; i++)
 			{
-				springs.Add(RouletteWheel());
+				springs.Add(new Chromosome(_population[i]));
 			}
 
-			for (int i = 0; i < springs.Count; i += 2)
+			for (int i = 0; i < _population.Count - _elitism; i++)
 			{
-				GAUtil.Crossover(springs[i], springs[i + 1]);
+				Shuffle();
+				springs.Add(new Chromosome(RouletteWheel()));
+			}
+
+			for (int i = _elitism; i < springs.Count; i += 2)
+			{
+				GAUtil.Crossover(springs[i], springs[i + 1], _cutPoints);
+			}
+
+			for (int i = _elitism; i < springs.Count; i++)
+			{
+				GAUtil.Mutation(springs[i], _mutationRate);
 			}
 
 			_population = springs;

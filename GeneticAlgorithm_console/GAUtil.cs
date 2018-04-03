@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using FunctionMaximum.Core;
 
-namespace GeneticAlgorithm_console
+namespace FunctionMaximum.Core
 {
 	public static class GAUtil
 	{
@@ -11,26 +13,30 @@ namespace GeneticAlgorithm_console
 			random = new Random();
 		}
 
-		public static void Crossover(Chromosome first, Chromosome second)
+		public static void Crossover(Chromosome first, Chromosome second, int cutPoints)
 		{
-			var cutPoint = random.Next(1, first.Size - 1);
-			
-			Console.WriteLine("\n*Crossover at: "+ cutPoint);
-			Console.WriteLine("BEFORE:");
-			Console.WriteLine(first.ToString());
-			Console.WriteLine(second.ToString());
-
-			for (int i = cutPoint; i < first.Size; i++)
+			var numberOfCutPoints = random.Next(1, cutPoints);
+			List<int> randomCutPoints = new List<int>(numberOfCutPoints);
+			do
 			{
-				bool temp = first[i];
-				first[i] = second[i];
-				second[i] = temp;
-			}
+				var point = random.Next(1, first.Size);
+				if (!randomCutPoints.Contains(point))
+				{
+					randomCutPoints.Add(point);
+				}
+			} while (randomCutPoints.Count == numberOfCutPoints);
+			randomCutPoints.Sort();
 
-			Console.WriteLine("AFTER:");
-			Console.WriteLine(first.ToString());
-			Console.WriteLine(second.ToString());
-			Console.WriteLine("================");
+			for (int i = 0; i < randomCutPoints.Count; i += 2)
+			{
+				var lastIndex = randomCutPoints.Count > i + 1 ? randomCutPoints[i + 1] : first.Size;
+				for (int j = randomCutPoints[i]; j < lastIndex; j++)
+				{
+					bool temp = first[j];
+					first[j] = second[j];
+					second[j] = temp;
+				}
+			}
 		}
 
 		public static void Mutation(Chromosome chromosome, double mutationRate)
