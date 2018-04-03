@@ -1,0 +1,6 @@
+c:\users\catalin\documents\visual studio 2015\Projects\GeneticAlgorithm_console\GeneticAlgorithm_console\bin\Debug\GeneticAlgorithm_console.exe.config
+c:\users\catalin\documents\visual studio 2015\Projects\GeneticAlgorithm_console\GeneticAlgorithm_console\bin\Debug\GeneticAlgorithm_console.exe
+c:\users\catalin\documents\visual studio 2015\Projects\GeneticAlgorithm_console\GeneticAlgorithm_console\bin\Debug\GeneticAlgorithm_console.pdb
+c:\users\catalin\documents\visual studio 2015\Projects\GeneticAlgorithm_console\GeneticAlgorithm_console\obj\Debug\GeneticAlgorithm_console.csprojResolveAssemblyReference.cache
+c:\users\catalin\documents\visual studio 2015\Projects\GeneticAlgorithm_console\GeneticAlgorithm_console\obj\Debug\GeneticAlgorithm_console.exe
+c:\users\catalin\documents\visual studio 2015\Projects\GeneticAlgorithm_console\GeneticAlgorithm_console\obj\Debug\GeneticAlgorithm_console.pdb

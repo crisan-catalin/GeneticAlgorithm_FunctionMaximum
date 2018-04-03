@@ -239,14 +239,17 @@
 			// 
 			// dividerLabel
 			// 
+			this.dividerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.dividerLabel.AutoSize = true;
 			this.dividerLabel.Font = new System.Drawing.Font("Garamond", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
 			this.dividerLabel.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-			this.dividerLabel.Location = new System.Drawing.Point(20, 102);
+			this.dividerLabel.Location = new System.Drawing.Point(32, 102);
 			this.dividerLabel.Name = "dividerLabel";
-			this.dividerLabel.Size = new System.Drawing.Size(540, 27);
+			this.dividerLabel.Size = new System.Drawing.Size(468, 27);
 			this.dividerLabel.TabIndex = 22;
-			this.dividerLabel.Text = "____________________________________________";
+			this.dividerLabel.Text = "______________________________________";
+			this.dividerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// MainGui
 			// 
