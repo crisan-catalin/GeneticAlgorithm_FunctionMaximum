@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.noChromosomesTextBox = new System.Windows.Forms.TextBox();
 			this.noChromosomesLabel = new System.Windows.Forms.Label();
 			this.noGenesLabel = new System.Windows.Forms.Label();
@@ -49,9 +50,11 @@
 			this.subtitleLabel = new System.Windows.Forms.Label();
 			this.titleLabel = new System.Windows.Forms.Label();
 			this.dividerLabel = new System.Windows.Forms.Label();
+			this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.elitismTrackBar)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.cutPointsTrackBar)).BeginInit();
 			this.statusStrip1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// noChromosomesTextBox
@@ -112,10 +115,12 @@
 			// 
 			// elitismTrackBar
 			// 
+			this.elitismTrackBar.LargeChange = 2;
 			this.elitismTrackBar.Location = new System.Drawing.Point(316, 167);
 			this.elitismTrackBar.Maximum = 12;
 			this.elitismTrackBar.Name = "elitismTrackBar";
 			this.elitismTrackBar.Size = new System.Drawing.Size(184, 56);
+			this.elitismTrackBar.SmallChange = 2;
 			this.elitismTrackBar.TabIndex = 4;
 			this.elitismTrackBar.Value = 2;
 			this.elitismTrackBar.ValueChanged += new System.EventHandler(this.elitismTrackBar_ValueChanged);
@@ -134,13 +139,14 @@
 			this.cutPointsLabel.AutoSize = true;
 			this.cutPointsLabel.Location = new System.Drawing.Point(313, 218);
 			this.cutPointsLabel.Name = "cutPointsLabel";
-			this.cutPointsLabel.Size = new System.Drawing.Size(123, 17);
+			this.cutPointsLabel.Size = new System.Drawing.Size(102, 17);
 			this.cutPointsLabel.TabIndex = 9;
-			this.cutPointsLabel.Text = "Cut points number";
+			this.cutPointsLabel.Text = "Max. cut points";
 			// 
 			// cutPointsTrackBar
 			// 
 			this.cutPointsTrackBar.Location = new System.Drawing.Point(316, 238);
+			this.cutPointsTrackBar.Maximum = 6;
 			this.cutPointsTrackBar.Name = "cutPointsTrackBar";
 			this.cutPointsTrackBar.Size = new System.Drawing.Size(184, 56);
 			this.cutPointsTrackBar.TabIndex = 6;
@@ -251,6 +257,10 @@
 			this.dividerLabel.Text = "______________________________________";
 			this.dividerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
+			// errorProvider
+			// 
+			this.errorProvider.ContainerControl = this;
+			// 
 			// MainGui
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -285,6 +295,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.cutPointsTrackBar)).EndInit();
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -313,6 +324,7 @@
 		private System.Windows.Forms.Label subtitleLabel;
 		private System.Windows.Forms.Label titleLabel;
 		private System.Windows.Forms.Label dividerLabel;
+		private System.Windows.Forms.ErrorProvider errorProvider;
 	}
 }
 

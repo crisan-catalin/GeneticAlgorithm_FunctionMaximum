@@ -56,7 +56,7 @@ namespace FunctionMaximum.Core.GUI
 
 			for (int i = 0; i < NoGenerations; i++)
 			{
-				_results.Add(new Point((int) functionParameter, (int) maximumFunction));
+				_results.Add(new Point((int)functionParameter, (int)maximumFunction));
 
 				toolStripProgressBar.Increment(1);
 
@@ -104,6 +104,19 @@ namespace FunctionMaximum.Core.GUI
 
 		private void elitismTrackBar_ValueChanged(object sender, EventArgs e)
 		{
+			int noChromosomes = int.Parse(noChromosomesTextBox.Text);
+			if (elitismTrackBar.Value % 2 != noChromosomes % 2)
+			{
+				var valueMustBe = noChromosomes % 2 == 0 ? "even" : "odd";
+				errorProvider.SetError(elitismTrackBar, $"Chromosomes number must be {valueMustBe}");
+				execButton.Enabled = false;
+			}
+			else
+			{
+				errorProvider.Clear();
+				execButton.Enabled = true;
+			}
+
 			elitismValueLabel.Text = elitismTrackBar.Value.ToString();
 		}
 
@@ -115,11 +128,13 @@ namespace FunctionMaximum.Core.GUI
 		private void noChromosomesTextBox_Leave(object sender, EventArgs e)
 		{
 			elitismTrackBar.Maximum = Int32.Parse(noChromosomesTextBox.Text);
+			elitismTrackBar_ValueChanged(sender, e);
 		}
 
 		private void noGenesTextBox_Leave(object sender, EventArgs e)
 		{
 			cutPointsTrackBar.Maximum = Int32.Parse(noGenesTextBox.Text);
+			cutPointsTrackBar_ValueChanged(sender, e);
 		}
 	}
 }
