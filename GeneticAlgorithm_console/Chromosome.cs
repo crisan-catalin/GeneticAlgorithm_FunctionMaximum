@@ -37,8 +37,6 @@ namespace FunctionMaximum.Core
 
 		public double ProbabilityOfSelection { get; set; }
 
-		public double ExpectedCount { get; set; }
-
 		public bool this[int index]
 		{
 			get { return _genes.Get(index); }
